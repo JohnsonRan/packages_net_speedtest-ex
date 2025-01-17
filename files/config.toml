@@ -1,0 +1,33 @@
+[server]
+host = "0.0.0.0"
+port = 8989
+basePath = ""
+
+[Speedtest]
+downDataChunkSize = 4
+downDataChunkCount = 4
+
+[log]
+logFilePath = "/tmp/speedtest-ex.log"
+maxLogSize = 5
+
+[ipinfo]
+model = "ipinfo"
+ipinfo_url = ""
+ipinfo_api_key = ""
+
+[database]
+model = "bolt"
+path = "/etc/speedtest-ex/db/speedtest.db"
+
+[frontend]
+chartlist = 100
+
+[revping]
+enable = true
+
+[auth]
+enable = false
+username = "admin"
+password = "password"
+secret = "secret"

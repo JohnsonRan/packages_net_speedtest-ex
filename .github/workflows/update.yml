@@ -27,7 +27,7 @@ jobs:
       id: hash
       run: |
         pkg_tarball="speedtest-ex-${pkg_version}.tar.gz"
-        curl -skLo "${pkg_tarball}" "https://codeload.github.com/${REPO_NAME}/tar.gz/v${pkg_version}"
+        curl -skLo "${pkg_tarball}" "https://codeload.github.com/${REPO_NAME}/tar.gz/${pkg_version}"
         pkg_hash=$(sha256sum "${pkg_tarball}" | awk '{print $1}')
         echo "pkg_hash=${pkg_hash}" >> $GITHUB_OUTPUT
         rm -f "${pkg_tarball}"

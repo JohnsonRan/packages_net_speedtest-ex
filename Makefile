@@ -51,7 +51,7 @@ define Package/speedtest-ex/install
 	$(INSTALL_BIN) $(CURDIR)/files/speedtest-ex.init $(1)/etc/init.d/speedtest-ex
 endef
 
-define Package/mihomo/postrm
+define Package/speedtest-ex/postrm
 #!/bin/sh
 if [ -z $${IPKG_INSTROOT} ]; then
 	service speedtest-ex stop > /dev/null 2>&1

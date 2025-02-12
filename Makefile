@@ -10,11 +10,9 @@ PKG_HASH:=0bf05c05a42ea5d2ad09fe03748d00dd55469d38a0fec40846e3729a8c316645
 
 PKG_MAINTAINER:=JohnsonRan <me@ihtw.moe>
 PKG_LICENSE:=LGPL-3.0
-PKG_LICENSE_FILE:=LICENSE
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
-PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=speedtest
@@ -30,17 +28,20 @@ define Package/speedtest-ex
   SECTION:=net
   CATEGORY:=Network
   TITLE:=This project is a significant refactor of the speedtest-go project
+  URL:=https://github.com/WJQSERVER/speedtest-ex
   DEPENDS:=$(GO_ARCH_DEPENDS)
-  MAINTAINER:=$(PKG_MAINTAINER)
 endef
 
 define Package/speedtest-ex/description
   This project is a significant refactor of the speedtest-go project
 endef
 
+define Package/speedtest-ex/conffiles
+/etc/speedtest-ex
+endef
+
 define Package/speedtest-ex/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/speedtest $(1)/usr/bin/speedtest-ex
+	$(call GoPackage/Package/Install/Bin,$(1))
 	
 	$(INSTALL_DIR) $(1)/etc/speedtest-ex
 	$(INSTALL_CONF) $(CURDIR)/files/config.toml $(1)/etc/speedtest-ex
@@ -51,13 +52,9 @@ define Package/speedtest-ex/install
 	$(INSTALL_BIN) $(CURDIR)/files/speedtest-ex.init $(1)/etc/init.d/speedtest-ex
 endef
 
-define Package/speedtest-ex/postrm
-#!/bin/sh
-if [ -z $${IPKG_INSTROOT} ]; then
-	service speedtest-ex stop > /dev/null 2>&1
-	rm /etc/init.d/speedtest-ex > /dev/null 2>&1
-	EOF
-fi
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(RM) -r $(PKG_BUILD_DIR)/rules/logic_test
 endef
 
 $(eval $(call GoBinPackage,speedtest-ex))

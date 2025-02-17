@@ -41,7 +41,8 @@ define Package/speedtest-ex/conffiles
 endef
 
 define Package/speedtest-ex/install
-	$(call GoPackage/Package/Install/Bin,$(1))
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/speedtest $(1)/usr/bin/speedtest-ex
 	
 	$(INSTALL_DIR) $(1)/etc/speedtest-ex
 	$(INSTALL_CONF) $(CURDIR)/files/config.toml $(1)/etc/speedtest-ex

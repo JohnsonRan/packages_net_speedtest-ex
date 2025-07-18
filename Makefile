@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=speedtest-ex
-PKG_VERSION:=1.1.1
+PKG_VERSION:=1.1.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/WJQSERVER/speedtest-ex/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=3e2adff3ae45f9e559267ec9c34715e4fd9343fb8d616ae6c8d4fd2abcd635d1
+PKG_HASH:=172dbbf468f2d83896081a22c4d65964cd0fa3dfda7926bfbd6da8b7d4d91d75
 
 PKG_MAINTAINER:=JohnsonRan <me@ihtw.moe>
 PKG_LICENSE:=LGPL-3.0
